@@ -1,0 +1,655 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<aiml version="1.0">
+meta name="language" content="en"/>
+
+<!-- Greetings -->
+<category>
+  <pattern> HELLO  </pattern>
+  <template>
+     Hello User!
+  </template>
+</category>
+
+<category>
+    <pattern> HI </pattern>
+    <template>
+        Hi User!
+    </template>
+</category>
+
+<category>
+  <pattern> HI * </pattern>
+  <template>
+	<srai>
+     HI
+	</srai>
+  </template>
+</category>
+
+<category>
+  <pattern> HELLO * </pattern>
+  <template>
+	<srai>
+     HELLO
+	</srai>
+  </template>
+</category>
+
+<category>
+	<pattern> BYE </pattern>
+	<template>
+		Goodbye user!
+	</template>
+</category>
+
+<category>
+	<pattern> BYE * </pattern>
+	<template>
+	    <srai>
+		BYE
+		</srai>
+	</template>
+</category>
+
+<category>
+	<pattern> MY NAME IS * </pattern>
+	<template>
+		How do you do <set name="username"><star/></set>
+	</template>
+</category>
+
+<category>
+	<pattern> WHAT IS MY NAME </pattern>
+	<template>
+		I believe your name to be <get name="username"/>
+	</template>
+</category>
+
+
+<category>
+    <pattern> _ DOING AlRIGHT _ </pattern>
+    <template>
+		<srai>
+			I AM ALRIGHT
+		</srai>
+	</template>
+</category>
+
+<category>
+    <pattern> _ ALRIGHT THANKS</pattern>
+   <template>
+		<srai>
+			I AM ALRIGHT
+		</srai>
+	</template>
+</category>
+
+<category>
+	<pattern> I AM FINE </pattern>
+	<template>
+    <think><set name = "emotion">fine</set></think>
+        <random>
+            <li> Good to hear! </li>
+            <li> Good! </li>
+            <li> Glad to hear! </li>
+            <li> Are you sure? </li>
+        </random>
+    </template>
+</category>
+
+<category>
+    <pattern> _ DOING FINE _ </pattern>
+    <template>
+		<srai>
+			I AM FINE
+		</srai>
+	</template>
+</category>
+
+<category>
+    <pattern> _ FINE THANKS  </pattern>
+    <template>
+		<srai>
+			I AM FINE
+		</srai>
+	</template>
+</category>
+
+<category>
+	<pattern> I AM GOOD </pattern>
+	<template>
+    <think><set name = "emotion">good</set></think>
+        <random>
+            <li> Good to hear! </li>
+            <li> Good! </li>
+            <li> Glad to hear! </li>
+            <li> Are you sure? </li>
+        </random>
+    </template>
+</category>
+
+<category>
+    <pattern> _ DOING GOOD _ </pattern>
+    <template>
+		<srai>
+			I AM GOOD
+		</srai>
+	</template>
+</category>
+
+<category>
+    <pattern> _ GOOD THANKS  </pattern>
+    <template>
+		<srai>
+			I AM GOOD
+		</srai>
+	</template>
+</category>
+
+<category>
+	<pattern> I AM WELL </pattern>
+	<template>
+    <think><set name = "emotion">well</set></think>
+        <random>
+            <li> Good to hear! </li>
+            <li> Good! </li>
+            <li> Glad to hear! </li>
+            <li> Are you sure? </li>
+        </random>
+    </template>
+</category>
+
+<category>
+    <pattern> _ DOING WELL _ </pattern>
+    <template>
+		<srai>
+			I AM WELL
+		</srai>
+	</template>
+</category>
+
+<category>
+    <pattern> _ WELL THANKS </pattern>
+    <template>
+		<srai>
+			I AM WELL
+		</srai>
+	</template>
+</category>
+
+<category>
+	<pattern> I AM NOT BAD </pattern>
+	<template>
+    <think><set name = "emotion">notbad</set></think>
+        <random>
+            <li> Good to hear! </li>
+            <li> Good! </li>
+            <li> Glad to hear! </li>
+            <li> Are you sure? </li>
+        </random>
+    </template>
+</category>
+
+<category>
+    <pattern> _ DOING NOT BAD _ </pattern>
+    <template>
+		<srai>
+			I AM NOT BAD
+		</srai>
+	</template>
+</category>
+
+<category>
+    <pattern> _ NOT BAD THANKS </pattern>
+    <template>
+		<srai>
+			I AM NOT BAD
+		</srai>
+	</template>
+</category>
+
+<!-- Repeating/Missed Questions/Answers -->
+<category>
+    <pattern> WHAT </pattern>
+    <template>
+        <response index="1"/>
+    </template>
+</category>
+
+
+
+
+<!-- Questions About Samuel -->
+<category>
+	<pattern> WHAT ARE YOU CALLED </pattern>
+	<template>
+		<random>
+			<li> Please call me Samuel</li>
+			<li> Samuel </li>
+			<li> My name is Samuel </li>
+			<li> My Creator name me Samuel </li>
+		</random>
+	</template>
+</category>
+
+<category>
+	<pattern> WHY ARE YOU CALLED SAMUEL </pattern>
+	<template>
+		I am named after famous diarist Samuel Pepys.
+	</template>
+</category>
+
+<category>
+	<pattern> WHAT ARE YOU </pattern>
+	<template>
+		I am a historian and an expert on Stuart Period, Please ask me "what topics do you know about" to find out more
+	</template>
+</category>
+
+<category>
+	<pattern> * TOPICS </pattern>
+	<template>
+		I know about: 
+		Stuart History: Events from 1600-1707 , Kings, Queens and Heads of States, 
+		Alliances with Britian , Wars and Battles , Family Members and relations, 
+		Religions, Faiths and Beliefs , Quotes, Movies and Books.
+	</template>
+</category>
+
+<category>
+	<pattern> * TOPICS * </pattern>
+	<template>
+		<srai>
+			TOPICS
+		</srai>
+	</template>
+</category>
+
+<category>
+	<pattern> _ TOPICS </pattern>
+	<template>
+		<srai>
+			TOPICS
+		</srai>
+	</template>
+</category>
+
+<category>
+	<pattern> TOPICS * </pattern>
+	<template>
+		<srai>
+			TOPICS
+		</srai>
+	</template>
+</category>
+
+<!-- Topic Help -->
+<category>
+	<pattern> TOPIC HELP </pattern>
+	<template>
+		Which of these would you like help with specifically: 
+		How to change topic, 
+		What questions to ask, 
+		
+	</template>
+</category>
+
+<category>
+	<pattern> _ CHANGE TOPIC </pattern>
+	<template>
+		First say "Tell me about (topic)", 
+		Second each topic will have a set of questions specific to itself so
+		say "What do you know about (topic)" to get that list,
+		Third 
+		
+	</template>
+</category>
+
+
+<!-- Topic Sorting -->
+<category>
+	<pattern> TELL ME ABOUT * </pattern>
+	<template>
+		Setting <think><set name="topic"><star/></set></think> as current topic
+	</template>
+</category>
+
+<category>
+	<pattern> WHAT DO YOU KNOW ABOUT KINGS </pattern>
+	<template>
+		Here's what i know about stuart kings: The Order of stuart kings
+	</template>
+</category>
+
+<category>
+	<pattern> WHO WERE THE STUART KINGS </pattern>
+	<template>
+		James I, Charles I, Charles II, James II
+	</template>
+</category>
+
+<category>
+	<!-- Order of Kings e.g. first, second, third -->
+	<pattern> WHO WAS THE * KING </pattern>
+	<template>
+		<think><set name= "king"><star/></set></think>
+		<condition name = "king">
+			<li value="first">The First king was James I of England and Ireland, V of Scotland</li>
+			<li value="second">The Second king was Charles I of England, Ireland and Scotland</li>
+			<li value="third">The Third king was Charles II of England, Ireland and Scotland</li>
+			<li value="fourth">The Fourth king was James II of England, Ireland(Disputed) and Scotland</li>
+			<li value="fifth">The Fifth king was William III of England, Ireland(Disputed) and Scotland(Disputed)</li>
+		</condition>
+	</template>
+</category>
+
+<category>
+	<pattern>WHO ARE * PARENTS</pattern>
+	<template>
+		<star/>'s parents are <think><set name="parents"><star/></set></think> 
+			<condition name="parents">
+				<li value="James I">Henry Stuart and Mary Queen of Scots</li>
+				<li value="Charles I">James I and Anne of Denmark</li>
+				<li value="Charles II">Charles I and Henrietta Maria</li>
+				<li value="James II">Charles I and Henrietta Maria</li>
+				<li value="William III">Mary Princess Royal and William II</li>	
+			</condition>	
+	</template>
+</category>
+
+<category>
+    <pattern> WHO ARE * SPOUSE </pattern>
+    <template>
+        <star/>'s spouse was <think><set name="spouse"><star/></set></think>
+        <condition name="spouse">
+            <li value="James I">Anne of Denmark</li>
+            <li value="Charles I">Henrietta Maria</li>
+            <li value="Charles II">Catherine of Braganza</li>
+            <li value="James II">Mary of Modena/Anne Hyde</li>
+            <li value="William III">Mary</li>
+        </condition>
+    </template>
+</category>
+
+<category>
+	<pattern> WHO ARE * CHILDERN </pattern>
+	<template>
+		<star/>'s childern are <think><set name="childern"><star/></set></think> 
+			<condition name="childern">
+				<li value="James I">Charles I, Henry Fredrick, Elizabeth Stuart</li>
+				<li value="Charles I">Charles II, James II, Mary Princess Royal, Henrietta Anne</li>
+				<li value="Charles II">James Crofts (Duke of Monmouth), No legitmate Childern</li>
+				<li value="James II">Mary II, Anne I</li>
+				<li value="William III">William (Duke of Gloucester)</li>
+			</condition>
+	</template>
+</category>
+
+<category>
+	<pattern> HOW DID * DIE </pattern>
+	<template>
+		<star/> died <think><set name="deathHow"><star/></set></think>
+			<condition name="deathHow">
+				<li value="James I"> from a series of health conditions, dieases and genetic disorders. Ulimately he died of dysentery</li>
+				<li value="Charles I"> by execution as a result of political turmoil beginning with parliment being prorougued (suspended) the and ending with the start of the english (republic) interregnum</li>
+				<li value="Charles II"> from an apoplectic fit, allegeldly from exposure to mercury</li>
+				<li value="James II"> from a brain haemorrhage </li>
+				<li value="William III"> of pneumonia</li>
+			</condition>
+	</template>
+</category>
+
+<category>
+	<pattern> DID JAMES I DIE FROM * </pattern>
+	<template>
+		<think><set name="deathFromJamesI"><star/></set></think>
+			<condition name="deathFromJamesI">
+				<li value= "health conditions"> yes that's true</li>
+				<li value= "dieases">yes that's true</li>
+				<li value= "genetic disorders">yes that's true</li>
+				<li value= "dysentery">yes that's true</li>
+			</condition>
+	</template>
+</category>
+
+<category>
+	<pattern> DID CHARLES I DIE FROM * </pattern>
+	<template>
+		<think><set name="deathFromCharlesI"><star/></set></think>
+			<condition name="deathFromCharlesI">
+				<li value= "execution"> yes that's true</li>
+				<li value= "political turmoil">yes that's true</li>
+			</condition>
+	</template>
+</category>
+
+<category>
+	<pattern> DID CHARLES II DIE FROM * </pattern>
+	<template>
+		<think><set name="deathFromCharlesII"><star/></set></think>
+			<condition name="deathFromCharlesII">
+				<li value= "experimenting"> yes that's true</li>
+				<li value= "mercury">yes that's true</li>
+				<li value= "mercury poisioning">yes that's true</li>
+				<li value= "apoplectic fit">yes that's true</li>
+				<li value= "a fit">yes that's true</li>
+			</condition>
+	</template>
+</category>
+
+<category>
+	<pattern> DID JAMES II DIE FROM * </pattern>
+	<template>
+		<think><set name="deathFromJamesII"><star/></set></think>
+			<condition name="deathFromJamesII">
+				<li value= "a brain haemorrhage"> yes that's true</li>
+				<li value= "internal bleeding">yes that's true</li>
+				<li value= "brain damage">yes that's true</li>
+			</condition>
+	</template>
+</category>
+
+<category>
+	<pattern> DID WILLIAM III DIE FROM * </pattern>
+	<template>
+		<think><set name="deathFromWilliamIII"><star/></set></think>
+			<condition name="deathFromWilliamIII">
+				<li value= "pneumonia"> yes that's true</li>
+			</condition>
+	</template>
+</category>
+
+<category>
+	<pattern> HOW OLD WAS * WHEN HE DIED </pattern>
+	<template>
+		<think><set name="deathAge"><star/></set></think> 
+			<condition name="deathAge">
+				<li value= "pneumonia"> yes that's true</li>
+				<li value="James I"> 59</li>
+				<li value="Charles I"> 49</li>
+				<li value="Charles II"> 54</li>
+				<li value="James II"> 67</li>
+				<li value="William III"> 52</li>
+			</condition>
+			years old
+	</template>
+</category>
+	
+<category>
+	<pattern> WHERE DID * DIE </pattern>
+	<template>
+		<think><set name="deathLocation"><star/></set></think>
+			<condition name="deathLocation">
+				<li value="James I"> Theobalds House, Hertfordshire, England </li>
+				<li value="Charles I"> Banqueting House, Palace of Whitehall, London, England </li>
+				<li value="Charles II"> Palace of Whitehall, London, England </li>
+				<li value="James II"> Saint-Germain-en-Laye, Paris, The Kingdom of France </li>
+				<li value="William III"> Kensington Palace, London, England</li>
+			</condition>
+	</template>
+</category>
+
+<category>
+	<pattern> WHEN WAS * BORN </pattern>
+	<template>
+		<think><set name="birthDate"><star/></set></think>
+			<condition name="birthDate">
+				<li value="James I"> 19th June 1566 </li>
+				<li value="Charles I"> 19th November 1600</li>
+				<li value="Charles II"> 29th May 1630</li>
+				<li value="James II"> 14th October 1633</li>
+				<li value="William III"> 4th November 1650</li>
+			</condition>
+	</template>
+</category>
+
+<category>
+	<pattern> WHEN DID * DIE </pattern>
+	<template>
+		<think><set name="deathDate"><star/></set></think>
+			<condition name="deathDate">
+				<li value="James I"> 27 March 1625</li>
+				<li value="Charles I"> 30 January 1649</li>
+				<li value="Charles II"> 6 February 1685</li>
+				<li value="James II"> 6 September 1701</li>
+				<li value="William III"> 8 March 1702</li>
+			</condition>
+	</template>
+</category>
+
+<category>
+	<pattern> WHERE WAS * BORN </pattern>
+	<template>
+		<think><set name="birthLocation"><star/></set></think>
+			<condition name="birthLocation">
+				<li value="James I"> Edinburgh Castle, Edinburgh, Scotland </li>
+				<li value="Charles I">Dunfermline Palace, Rosyth, Scotland </li>
+				<li value="Charles II"> St James's Palace, London, England </li>
+				<li value="James II"> St James's Palace, London, England </li>
+				<li value="William III"> Binnenhof, The Hague, Netherlands</li>
+			</condition>
+	</template>
+</category>
+
+<category>
+	<pattern> HOW LONG DID * RULE FOR </pattern>
+	<template>
+		<think><set name="ruleLength"><star/></set></think>For
+			<condition name="ruleLength">
+				<li value="James I"> 36 years in Scotland, in England 22</li>
+				<li value="Charles I"> 24</li>
+				<li value="Charles II"> 25</li>
+				<li value="James II"> 3</li>
+				<li value="William III"> 13</li>
+			</condition>
+			years
+	</template>
+</category>
+
+<category>
+	<pattern> HOW LONG DID * REIGN FOR </pattern>
+	<template>
+		<srai> HOW LONG DID * RULE FOR </srai>
+	</template>
+</category>
+
+<category>
+	<pattern> HOW DID * RULE END</pattern>
+	<template>
+		<think><set name="ruleEnd"><star/></set></think>
+			<condition name="ruleEnd">
+				<li value="James I"> In his death, Charles I succeeded him </li>
+				<li value="Charles I"> In his execution, resulted in the office of King being abolished </li>
+				<li value="Charles II"> Defeated at the Battle of Worcester, he was exiled for 9 years </li>
+				<li value="James II"> From a conspiracy as a result of the Glorious Revolution, he was exiled until his death</li>
+				<li value="William III"> In his death, Anne succeeded him</li>
+			</condition>
+	</template>
+</category>
+
+<category>
+	<pattern> HOW DID * BECOME KING </pattern>
+	<template>
+		<think><set name="kingOrigin"><star/></set></think>
+			<condition name="kingOrigin">
+				<li value="James I"> James I was invited by the English Parliment to become the King of England </li>
+				<li value="Charles I"> By being the first in line to the throne after his older brother Henry died of typhoid at 18 years old </li>
+				<li value="Charles II"> After the resignation of Lord Protector Richard Cromwell, Charles II was restored to power in 1660</li>
+				<li value="James II"> When his brother Charles II died, James succeeded to the throne backed by the support in all three countries</li>
+				<li value="William III"> Parliment declared that James II had abdicated the throne as a result William II was offered the throne for being the most "eligible" recipient</li>
+			</condition>
+	</template>
+</category>
+
+<category>
+	<pattern> HOW OLD WAS * WHEN HE WAS CORNONATED </pattern>
+	<template>
+		<think><set name="coronatedAge"><star/></set></think>
+			<condition name="coronatedAge">
+				<li value="James I"> 3 months old in scotland, in england 37</li>
+				<li value="Charles I"> 25</li>
+				<li value="Charles II"> 19</li>
+				<li value="James II"> 52</li>
+				<li value="William III"> 39</li>
+			</condition>
+			years old.
+	</template>
+</category>
+<category>
+	<pattern> WHERE WAS * CORNANATED </pattern>
+	<template>
+		<think><set name="coronatedLocation"><star/></set></think>
+			<condition name="coronatedLocation">
+				<li value="James I"> The Church of Holy Rude in scotland and at Westminsiter Abbey in england</li>
+				<li value="Charles I"> Both at Westminsiter Abbey and at the Palace of Holyroodhouse</li>
+				<li value="Charles II"> Originally taking place at the tower of london, he was coronated a year after being the king on 23rd April 1661</li>
+				<li value="James II"> At Westminister Abbey</li>
+				<li value="William III"> At Westminister Abbey</li>
+			</condition>
+	</template>
+</category>
+<category>
+	<pattern> WHAT IS * MOST FAMOUS FOR </pattern>
+	<template>
+		<think><set name="famous"><star/></set></think>
+			<condition name="famous">
+				<li value="James I"> During his rule, James I ordered a new translation of the bible: "Authorised King James's Version of the Bible"</li>
+				<li value="Charles I"> The British Civil war lasting from 1642-51</li>
+				<li value="Charles II"> Founding the Royal Society in 1660</li>
+				<li value="James II"> His controversial tolerance to catholicism during his rule</li>
+				<li value="William III"> For supressing the rebellion in Scotland and Ireland with the Glencoe Massarce and the Battle of the Boyne</li>
+			</condition>
+	</template>
+</category>
+<category>
+	<pattern> WHAT WERE THE MOST IMPORTANT EVENTS IN * LIFE </pattern>
+	<template>
+		<think><set name="events"><star/></set></think>
+			<condition name="events">
+				<li value="James I"> Gunpowder Plot; Jamestown in Virginia, America; King James Bible"</li>
+				<li value="Charles I"> English Civil War; Execution of Charles I; Royalist attack Parliament</li>
+				<li value="Charles II">  Great Fire of London; Secret Treaty of Dover; Habeas Corpus Act</li>
+				<li value="James II"> Attempt to restore Catholicism; Declaration of Indulgence; Seizure of New Amsterdam from the Dutch in 1664</li>
+				<li value="William III"> The Glorious Revolution; 1689 Bill of Rights; Act of Settlement 1702</li>
+			</condition>
+	</template>
+</category>
+
+<category>
+	<pattern>*</pattern>
+	<template>
+		#99$
+	</template>
+</category>
+
+<!-- Logic Input -->
+<category>
+    <pattern> I KNOW THAT * IS * </pattern>
+    <template>#3$<star index="1"/> is <star index="2"/></template>
+</category>
+
+<category>
+    <pattern> CHECK THAT * IS * </pattern>
+    <template>#4$<star index="1"/> is <star index="2"/></template>
+</category>
+</aiml>

@@ -1,0 +1,702 @@
+import pandas as pd
+dataset = pd.read_csv("../input/kaggle-survey-2021/kaggle_survey_2021_responses.csv", low_memory = False)
+#-------
+dataset = dataset.iloc[1: , :]
+
+pd.set_option('display.max_rows', 260)
+pd.set_option('display.max_columns', 25)
+pd.set_option('display.width', 80)
+#-------
+df = pd.DataFrame(columns = ['Age','Education','Coding Experience','Industry','Compensation'])
+df['Age'] = dataset['Q1']
+df['Education'] = dataset['Q4']
+df['Coding Experience'] = dataset['Q6']
+df['Compensation'] = dataset['Q25']
+#-------
+age_list = df['Age'].tolist()
+edu_list = df['Education'].tolist()
+codeXp_list = df['Coding Experience'].tolist()
+ind_list = df['Industry'].tolist()
+comp_list = df['Compensation'].tolist()
+#-------
+cleanData = df[~df.isnull().any(axis = 1)]
+df1 = pd.DataFrame(cleanData)
+#-------
+import statistics
+
+ageGroup = {'1': '18-21', '2': '22-24', '3': '25-29','4':'30-34','5':'35-39',
+        '6':'40-44','7':'45-49','8':'50-54','9':'55-59','10':'60-69',
+        '11':'70+'}
+
+numOfDevs1 = df1['Age'].str.contains('18-21').sum()
+numOfDevs2 = df1['Age'].str.contains('22-24').sum()
+numOfDevs3 = df1['Age'].str.contains('25-29').sum()
+numOfDevs4 = df1['Age'].str.contains('30-34').sum()
+numOfDevs5 = df1['Age'].str.contains('35-39').sum()
+numOfDevs6 = df1['Age'].str.contains('40-44').sum()
+numOfDevs7 = df1['Age'].str.contains('45-49').sum()
+numOfDevs8 = df1['Age'].str.contains('50-54').sum()
+numOfDevs9 = df1['Age'].str.contains('55-59').sum()
+numOfDevs10 = df1['Age'].str.contains('60-69').sum()
+numOfDevs11 = df1['Age'].str.contains('70+').sum() 
+
+numOfDevs = { '1':numOfDevs1, '2':numOfDevs2 , '3':numOfDevs3 , '4':numOfDevs4 , '5':numOfDevs5 , 
+                  '6':numOfDevs6 , '7':numOfDevs7 , '8':numOfDevs8 , '9':numOfDevs9 , '10':numOfDevs10 ,
+                  '11':numOfDevs11}
+
+for i, i2 in zip(ageGroup ,numOfDevs):
+    if i != '12':
+        print("There are ", numOfDevs[i2], "Devlopers aged ", ageGroup[i])
+
+
+totalNumOfDevs = numOfDevs.values()      
+
+print("The median number of developers is: ", statistics.median(totalNumOfDevs ))
+print("The total number of devlopers aged from 18-70+ :", sum(totalNumOfDevs))
+
+ageGroupCommonEarnings = df1.groupby("Age", sort =True)["Compensation"].value_counts()
+print(ageGroupCommonEarnings)
+#--------
+n1 = df1.loc[df1['Compensation']== "$0-999", 'Age'].value_counts()
+n2 = df1.loc[df1['Compensation']== "1,000-1,999", 'Age'].value_counts()
+n3 = df1.loc[df1['Compensation']== "2,000-2,999", 'Age'].value_counts()
+n4 = df1.loc[df1['Compensation']== "3,000-3,999", 'Age'].value_counts()
+n5 = df1.loc[df1['Compensation']== "4,000-4,999", 'Age'].value_counts()
+n6 = df1.loc[df1['Compensation']== "5,000-7,499", 'Age'].value_counts()
+n7 = df1.loc[df1['Compensation']== "7,500-9,999", 'Age'].value_counts()
+n8 = df1.loc[df1['Compensation']== "10,000-14,999", 'Age'].value_counts()
+n9 = df1.loc[df1['Compensation']== "15,000-19,999", 'Age'].value_counts()
+n10 = df1.loc[df1['Compensation']== "20,000-24,999", 'Age'].value_counts()
+n11 = df1.loc[df1['Compensation']== "25,000-29,999", 'Age'].value_counts()
+n12 = df1.loc[df1['Compensation']== "30,000-39,999", 'Age'].value_counts()
+n13 = df1.loc[df1['Compensation']== "40,000-49,999", 'Age'].value_counts()
+n14 = df1.loc[df1['Compensation']== "50,000-59,999", 'Age'].value_counts()
+n15 = df1.loc[df1['Compensation']== "60,000-69,999", 'Age'].value_counts()
+n16 = df1.loc[df1['Compensation']== "70,000-79,999", 'Age'].value_counts()
+n17 = df1.loc[df1['Compensation']== "80,000-89,999", 'Age'].value_counts()
+n18 = df1.loc[df1['Compensation']== "90,000-99,999", 'Age'].value_counts()
+n19 = df1.loc[df1['Compensation']== "100,000-124,999", 'Age'].value_counts()
+n20 = df1.loc[df1['Compensation']== "125,000-149,999", 'Age'].value_counts()
+n21 = df1.loc[df1['Compensation']== "150,000-199,999", 'Age'].value_counts()
+n22 = df1.loc[df1['Compensation']== "200,000-249,999", 'Age'].value_counts()
+n23 = df1.loc[df1['Compensation']== "150,000-199,999", 'Age'].value_counts()
+n24 = df1.loc[df1['Compensation']== "200,000-249,999", 'Age'].value_counts()
+n25 = df1.loc[df1['Compensation']== "250,000-299,999", 'Age'].value_counts()
+n26 = df1.loc[df1['Compensation']== "300,000-499,999", 'Age'].value_counts()
+n27 = df1.loc[df1['Compensation']== "$500,000-999,999", 'Age'].value_counts()
+n28 = df1.loc[df1['Compensation']== ">$1,000,000", 'Age'].value_counts()
+#---------
+n = {1:n1, 2:n2, 3:n3,
+     4:n4, 5:n5, 6:n6,
+     7:n7 ,8:n8, 9:n9,
+     10:n10, 11:n11, 12:n12,
+     13:n13, 14:n14, 15:n15,
+     16:n16, 17:n17, 18:n18,
+     19:n19, 20:n20, 21:n21,
+     22:n22, 23:n23, 24:n24,
+     25:n25, 26:n26, 27:n27,
+     28:n28}
+
+
+
+range1 = range(0,11)
+range2 = range (1,12)
+
+values = []
+import itertools
+for i,i2, i3 in itertools.zip_longest(n, range1, range2):
+    value = n[i].iloc[i2:i3]
+    maxValue = np.amax(value)
+    values.append(maxValue)    
+print(values)
+#----------
+income = ['$0-999','1,000-1,999','2,000-2,999',
+          '3,000-3,999','4,000-4,999','5,000-7,499',
+          '7,500-9,999','10,000-14,999','15,000-19,999',
+          '20,000-24,999','25,000-29,999','30,000-39,999',
+          '40,000-49,999','50,000-59,999','60,000-69,999',
+          '70,000-79,999','80,000-89,999','90,000-99,999',
+          '100,000-124,999', '125,000-149,999','150,000-199,999',
+          '200,000-249,999','150,000-199,999','200,000-249,999',
+          '250,000-299,999','300,000-499,999','$500,000-999,999',
+          '>$1,000,000']
+#----------
+df5 = pd.DataFrame(columns = ['Income','Total Number of Developers per Income Level($)'])
+df5['Income'] = income
+df5['Total Number of Developers per Income Level($)'] = values
+#----------
+import matplotlib.pyplot as plt
+x = df5['Income']
+y = df5['Total Number of Developers per Income Level($)']
+
+
+ages = ['22-24','30-34','22-24','35-39','40-44','45-49','45-49',
+        '45-49','18-21','18-21','18-21','70+','30-34','25-29',
+        '25-29','30-34','30-34','30-34','30-34','40-44','45-49',
+        '35-39','45-49','35-39','45-49','50-54','45-49','45-49']
+
+
+plt.barh(x, y, height = 0.5, edgecolor = 'black')
+
+
+plt.tight_layout()
+plt.title("Total Count Of Developers That Earn A Specified Amount Per Income Bracket")
+plt.xlabel("Number of Developers per Income Level")
+plt.ylabel("Income")
+#---------
+df2 = pd.DataFrame(columns = ['Age Group','Number Of Developers'])
+df2['Age Group'] = ageGroup.values()
+df2['Number Of Developers'] = numOfDevs.values()
+
+ages = df2['Age Group']
+nums = df2['Number Of Developers']
+#----------
+total = sum(totalNumOfDevs)
+pct = (nums/total)*100
+percentage = np.round(pct,1)
+#---------
+
+import matplotlib as mpl
+mpl.rcParams['font.size'] = 20.0
+
+def func(pct):
+    return "{:1.1f}%".format(pct)
+
+plt.figsize = (1,1)
+
+e = [0,0,0.2,0,0,0,0,0,0,0,0]
+wp = {"linewidth": 2, 'width':2, "edgecolor":"k"}
+t = {'fontsize':14, 'color':'w'}
+colours = ['#499c5c','#6ccedf','#47e5bc','#81e4da','#81e4de','#aecfdf','#41ab46','#70f579','#12ef21','#4af537','#1ece0b']
+
+
+plt.pie(nums,
+        autopct = lambda pct: func(pct),
+        startangle = 90, 
+        explode = e,
+        textprops = t,
+        shadow = True,
+        radius = 2.0,        
+        wedgeprops = wp,
+        pctdistance = 0.83,
+        colors = colours)
+
+plt.legend(title = "Densest Age Group of Developers",labels = ages, bbox_to_anchor = (0.85,1.025), loc = 'best')
+plt.axis('equal')
+plt.subplots_adjust(left = 0.1, bottom = 0.1, right = 0.75)
+#----------
+x = df2['Age Group']
+y = df2['Number Of Developers']
+
+colours = ['#3e97a9','#44869f','#497695','#4f658a','#545480']
+
+plt.barh(x, y, height = 0.5, color = colours, edgecolor = 'black')
+plt.title("Number of Developers by Age Group", )
+plt.ylabel("Age Group")
+plt.xlabel("Number of Developers")
+
+plt.rcParams["figure.figsize"] = (20,10)
+plt.rcParams.update({'font.size': 40})
+#----------
+import seaborn as sns
+from sklearn.preprocessing import OrdinalEncoder
+
+orderedIncome = [['$0-999','1,000-1,999','2,000-2,999',
+          '3,000-3,999','4,000-4,999','5,000-7,499',
+          '7,500-9,999','10,000-14,999','15,000-19,999',
+          '20,000-24,999','25,000-29,999','30,000-39,999',
+          '40,000-49,999','50,000-59,999','60,000-69,999',
+          '70,000-79,999','80,000-89,999','90,000-99,999',
+          '100,000-124,999', '125,000-149,999','150,000-199,999',
+          '200,000-249,999','150,000-199,999','200,000-249,999',
+          '250,000-299,999','300,000-499,999','$500,000-999,999',
+          '>$1,000,000']]
+
+oc = OrdinalEncoder(categories = orderedIncome)
+
+cleanAgeGroup = df1.dropna(subset = ['Age'])
+cleanIncome = df1.dropna(subset = ['Compensation'])
+cleanOrderedIncome = oc.fit_transform(cleanIncome['Compensation'].values.reshape(-1,1))
+
+
+df3 = pd.DataFrame(columns = ['Age Group','Income','Level Of Income', 'High Income', 'Total Income Depending On Age'])
+df3['Age Group'] = cleanAgeGroup['Age']
+df3['Income'] = cleanIncome['Compensation']
+df3['Level Of Income'] = cleanOrderedIncome
+cleanHighIncome = df3['Level Of Income'].apply(lambda x:0 if x < 17 else 1)
+df3['High Income'] = cleanHighIncome 
+
+df4 = df3.groupby("Age Group", sort = True)["Level Of Income"].value_counts().reset_index(name = 'Number Of Developers That Earn Above $80k')
+#----------
+highSchoolGraduate = df1['Education'].str.contains('No formal education past high school').sum()
+higherLevelEducation = df1['Education'].str.contains("Some college/university study without earning a bachelor’s degree").sum() #Alternative College/University Study
+bachelorDegree = df1['Education'].str.contains("Bachelor’s degree").sum()
+masterDegree = df1['Education'].str.contains("Master’s degree").sum()
+doctoralDegree = df1['Education'].str.contains('Doctoral degree').sum()
+professionalDegree = df1['Education'].str.contains('Professional doctorate').sum()
+noAnswer= df1['Education'].str.contains('I prefer not to answer').sum()
+
+eduCount = {1:highSchoolGraduate, 2:higherLevelEducation, 3:bachelorDegree,
+                  4:masterDegree, 5: doctoralDegree, 6:professionalDegree,
+                  7:noAnswer}
+#print(eduCount)
+eduCatergories = {1: "No formal education past high school", 2: "Alternative College/University Study", 3: "Bachelor's Degree",
+              4: "Master's Degree", 5: "Doctoral Degree" , 6:"Professional Doctorate",
+              7:"No Definite Answer"}
+
+for i in range(1,8):
+    print("There are ", eduCount[i], " developers who have earned: ", eduCatergories[i])
+#--------
+df6 = pd.DataFrame(columns = ['Education Type', 'Number Of Developers'])
+df6['Education Type'] = eduCatergories.values()
+df6['Number Of Developers'] = eduCount.values()
+#--------
+x = df6['Education Type']
+y = df6['Number Of Developers']
+
+colours = ['#FFD700', '#ffd940', '#fedb60', '#fddc6f', '#fbdd85', '#f9df9a', '#f5e1af']
+
+plt.barh(x,y, height = 0.5, color = colours, edgecolor = 'black')
+plt.title("Number Of Developers per Education Type")
+plt.ylabel("Education Type")
+plt.xlabel("Number Of Developers")
+plt.rcParams["figure.figsize"] = (40,20)
+plt.rcParams.update({'font.size': 40})
+#-------
+eduIncome = df1.groupby('Education')['Compensation'].value_counts()
+eduIncome.groupby('Compensation').max()
+
+eduName = []
+eduComp = []
+eduCount = []
+
+for i, rows in eduIncome.iteritems():
+        eduName.append(i[0])
+        eduComp.append(i[1])
+        eduCount.append(rows)
+
+df_eduIncome = pd.DataFrame(columns = ['Education Type','Income','Total Counts'])
+df_eduIncome['Education Type'] = eduName
+df_eduIncome['Income'] = eduComp
+df_eduIncome['Total Counts'] = eduCount
+#-------
+bachIncome = ['0','10000','1000','5000','7500','15000','2000','30000','50000','4000','40000','20000','100000','25000','60000',
+              '3000','70000','80000','125000','150000','90000','200000','300000', '1000000','250000']
+#-------
+eduNameBach = eduName[0:25]
+eduCompBach = eduComp[0:25]
+eduCountBach = eduCount[0:25]  
+
+df_bachIncome = pd.DataFrame(columns = ['Education Type','Income','Total Counts','Income Sort'])
+df_bachIncome['Education Type'] = eduNameBach
+df_bachIncome['Income'] = eduCompBach
+df_bachIncome['Total Counts'] = eduCountBach
+df_bachIncome['Income Sort'] = bachIncome
+
+df_bachIncome['Income Sort'] = df_bachIncome['Income Sort'].astype(float)
+sorted_dfBach = df_bachIncome.sort_values(by = 'Income Sort', ascending = True)
+sorted_dfBach.drop('Income Sort', axis = 1, inplace = True)
+#---------
+docIncome = ['0','100000','1000','50000','30000','40000','10000','15000','150000','20000','60000','70000','2000','125000','90000','80000',
+             '25000','5000','7500','4000','3000','200000','250000','300000','1000000']
+#---------
+eduNameDoc = eduName[26:51] 
+eduCompDoc = eduComp[26:51] 
+eduCountDoc = eduCount[26:51] 
+
+df_DocIncome = pd.DataFrame(columns = ['Education Type','Income','Total Counts','Income Sort'])
+df_DocIncome['Education Type'] = eduNameDoc
+df_DocIncome['Income'] = eduCompDoc
+df_DocIncome['Total Counts'] = eduCountDoc
+df_DocIncome['Income Sort'] = docIncome
+
+df_DocIncome['Income Sort'] = df_DocIncome['Income Sort'].astype(float)
+sorted_dfDoc = df_DocIncome.sort_values(by = 'Income Sort', ascending = True)
+sorted_dfDoc.drop('Income Sort', axis = 1, inplace = True)
+#-----------
+NaIncome = ['0','10000','2000','1000','7500','3000','20000',
+            '40000','5000','30000','15000','4000','100000',
+            '60000','25000','50000','70000','80000','125000','1000000',
+            '150000','90000','500000','200000','250000']
+#-----------
+eduNameNa = eduName[52:77]
+eduCompNa = eduComp[52:77]
+eduCountNa = eduCount[52:77]
+
+df_NaIncome = pd.DataFrame(columns = ['Education Type','Income','Total Counts','Income Sort'])
+df_NaIncome['Education Type'] = eduNameNa
+df_NaIncome['Income'] = eduCompNa
+df_NaIncome['Total Counts'] = eduCountNa
+df_NaIncome['Income Sort'] = NaIncome
+
+df_NaIncome['Income Sort'] = df_NaIncome['Income Sort'].astype(float)
+sorted_dfNa = df_NaIncome.sort_values(by = 'Income Sort', ascending = True)
+sorted_dfNa.drop('Income Sort', axis = 1, inplace = True)
+#----------
+MastIncome = ['0','1000','10000','100000','30000','50000','40000',
+              '5000','60000','20000','15000','2000','7500','70000',
+              '25000','125000','150000','80000','4000','90000','3000',
+              '200000','300000','250000','1000000']
+#----------
+eduNameMast = eduName[77:102]
+eduCompMast = eduComp[77:102]
+eduCountMast = eduCount[77:102]
+
+df_MastIncome = pd.DataFrame(columns = ['Education Type','Income','Total Counts','Income Sort'])
+df_MastIncome['Education Type'] = eduNameMast
+df_MastIncome['Income'] = eduCompMast
+df_MastIncome['Total Counts'] = eduCountMast
+df_MastIncome['Income Sort'] = MastIncome
+
+df_MastIncome['Income Sort'] = df_MastIncome['Income Sort'].astype(float)
+sorted_dfMast = df_MastIncome.sort_values(by = 'Income Sort', ascending = True)
+sorted_dfMast.drop('Income Sort', axis = 1, inplace = True)
+#---------
+HsIncome = ['0','1000','2000','40000','30000','50000','20000','60000','10000',
+            '15000','25000','4000','5000','70000','7500','100000','90000','150000',
+            '3000','80000','200000','500000','1000000']
+#----------
+eduNameHs = eduName[103:126]
+eduCompHs = eduComp[103:126]
+eduCountHs = eduCount[103:126]
+
+df_HsIncome = pd.DataFrame(columns = ['Education Type','Income','Total Counts','Income Sort'])
+df_HsIncome['Education Type'] = eduNameHs
+df_HsIncome['Income'] = eduCompHs
+df_HsIncome['Total Counts'] = eduCountHs
+df_HsIncome['Income Sort'] = HsIncome
+
+df_HsIncome['Income Sort'] = df_HsIncome['Income Sort'].astype(float)
+sorted_dfHs = df_HsIncome.sort_values(by = 'Income Sort', ascending = True)
+sorted_dfHs.drop('Income Sort', axis = 1, inplace = True)
+#----------
+ProfIncome = ['1000','150000','7500','100000','2000','4000','25000','40000','60000',
+              '70000','50000','20000','90000','10000','30000','5000','15000','200000',
+              '3000','80000','125000','300000','500000','250000']
+#----------
+eduNameProf = eduName[127:151]
+eduCompProf = eduComp[127:151]
+eduCountProf = eduCount[127:151]
+
+df_ProfIncome = pd.DataFrame(columns = ['Education Type','Income','Total Counts','Income Sort'])
+df_ProfIncome['Education Type'] = eduNameProf
+df_ProfIncome['Income'] = eduCompProf
+df_ProfIncome['Total Counts'] = eduCountProf
+df_ProfIncome['Income Sort'] = ProfIncome
+
+df_ProfIncome['Income Sort'] = df_ProfIncome['Income Sort'].astype(float)
+sorted_dfProf = df_ProfIncome.sort_values(by = 'Income Sort', ascending = True)
+sorted_dfProf.drop('Income Sort', axis = 1, inplace = True)
+#-----------
+AltIncome = ['0','10000','40000','1000','30000','5000','20000','50000','60000','2000','25000',
+             '100000','15000','7500','80000','4000','90000','3000','70000','125000','150000',
+             '200000','1000000','500000']
+#-----------
+eduNameAlt = eduName[152:176]
+eduCompAlt = eduComp[152:176]
+eduCountAlt = eduCount[152:176]
+
+df_AltIncome = pd.DataFrame(columns = ['Education Type','Income','Total Counts'])
+df_AltIncome['Education Type'] = eduNameAlt
+df_AltIncome['Income'] = eduCompAlt
+df_AltIncome['Total Counts'] = eduCountAlt
+df_AltIncome['Income Sort'] = AltIncome
+
+df_AltIncome['Income Sort'] = df_AltIncome['Income Sort'].astype(float)
+sorted_dfAlt = df_AltIncome.sort_values(by = 'Income Sort', ascending = True)
+sorted_dfAlt.drop('Income Sort', axis = 1, inplace = True)
+#-----------
+df_eduIncomeCombined = pd.DataFrame(columns = ['Income',"Bachelor's Degree",
+                                               'Doctoral Degree',
+                                               'No Definite Answer',
+                                               "Master's Degree",
+                                               'High School Graduate',
+                                               'Professional Docrate',
+                                               'Alternative College/Univeristy Study'])
+
+df_eduIncomeCombined['Income'] = income
+df_eduIncomeCombined["Bachelor's Degree"] = sorted_dfBach['Total Counts']
+df_eduIncomeCombined['Doctoral Degree'] = sorted_dfDoc['Total Counts']
+df_eduIncomeCombined['No Definite Answer'] = sorted_dfNa['Total Counts']
+df_eduIncomeCombined["Master's Degree"] = sorted_dfMast['Total Counts']
+df_eduIncomeCombined['High School Graduate'] = sorted_dfHs['Total Counts']
+df_eduIncomeCombined['Professional Docrate'] = sorted_dfProf['Total Counts']
+df_eduIncomeCombined['Alternative College/Univeristy Study'] = sorted_dfAlt['Total Counts']
+
+cleanedData = df_eduIncomeCombined[~df_eduIncomeCombined.isnull().any(axis = 1)]
+#------------
+df_eduIncomeCombined.plot(x = 'Income', kind = "bar", stacked = True, figsize = (20,10))
+plt.legend(loc = "lower left", bbox_to_anchor = (0.9,1.0))
+plt.rcParams.update({'font.size':20})
+plt.title("Total Number Of Developers In Each Education Type Per Income")
+plt.ylabel("Number Of Developers")
+plt.xlabel("Income")
+#------------
+codeXp = {1:'I have never written code',2:'< 1 years', 3: '1-3 years',
+          4:'3-5 years',5:'5-10 years',6:'10-20 years',7:'20+ years'}
+
+inexperienced = df1['Coding Experience'].str.contains('I have never written code').sum()
+lessThanOneYear = df1['Coding Experience'].str.contains('< 1 years').sum()
+oneToThreeYears = df1['Coding Experience'].str.contains('1-3 years').sum()
+threeToFiveYears = df1['Coding Experience'].str.contains('3-5 years').sum()
+fiveToTenYears = df1['Coding Experience'].str.contains('5-10 years').sum()
+tenToTwentyYears = df1['Coding Experience'].str.contains('10-20 years').sum()
+twentyPlusYears = df1['Coding Experience'].str.contains('20+ years').sum()
+
+codeXpDevs = {1:inexperienced, 2:lessThanOneYear,3:oneToThreeYears,
+              4:threeToFiveYears,5:fiveToTenYears,6:tenToTwentyYears,7:twentyPlusYears}
+
+totalCodeXpDevs = codeXpDevs.values()
+for i in range(1,7):
+    print('There are ', codeXpDevs[i],' Devlopers who have: ', codeXp[i], 'experience')
+print('Total Count of Devlopers: ', sum(totalCodeXpDevs))
+#-----------
+df_codeXp = pd.DataFrame(columns = ['Coding Experience','Total Number Of Developers'])
+df_codeXp['Coding Experience'] = codeXp.values()
+df_codeXp['Total Number Of Developers'] = codeXpDevs.values()
+#-----------
+x = df_codeXp['Coding Experience']
+y = df_codeXp['Total Number Of Developers']
+
+colors = ['#00876c','#58a066','#98b561','#dac767','#e09d4b','#e06f45','#d43d51']
+
+plt.barh(x,y, height = 0.5, color = colors, edgecolor = 'black')
+
+plt.title("Number Of Developers per Coding Experience (Years)")
+plt.ylabel("Coding Experience")
+plt.xlabel("Number Of Developers")
+plt.rcParams.update({'font.size': 40})
+plt.show()
+#----------
+df_eduAndXp = pd.DataFrame(columns = ['Education','Coding Experience','Compensation'])
+df_eduAndXp['Education'] = df1['Education']
+df_eduAndXp['Coding Experience'] = df1['Coding Experience']
+df_eduAndXp['Compensation'] = df1['Compensation']
+#----------
+cols = ['Coding Experience']
+f = df_eduAndXp.groupby(cols)['Compensation'].value_counts()
+CodeXp = []
+IncomeXp = []
+CountXp = []
+
+for index, rows in f.iteritems():
+    CodeXp.append(index[0])
+    IncomeXp.append(index[1])
+    CountXp.append(rows)
+    
+df_eduAndXpReassigned = pd.DataFrame(columns = ['Experience','Total Counts','Income'])
+df_eduAndXpReassigned['Experience'] = CodeXp
+df_eduAndXpReassigned['Total Counts'] = CountXp
+df_eduAndXpReassigned['Income'] = IncomeXp
+#-----------
+sort_df8 = ['0','1000','10000','5000','2000','7500','4000','30000','15000','20000',
+'40000','3000','50000','60000','100000','25000','70000','80000','90000',
+'150000','125000','300000','1000000','200000','500000','250000','100000',
+'0','30000','50000','150000','40000','60000','10000','125000','20000','80000',
+'70000','1000','90000','25000','15000','7500','200000','5000','2000','3000',
+'250000','300000','4000','1000000','500000','100000','0','125000','150000',
+'50000','40000','30000','90000','60000','200000','70000','10000','80000',
+'25000','20000','15000','2000','300000','1000','7500','5000','250000',
+'4000','3000','1000000','500000','0','1000','10000','5000','30000','40000',
+'15000','50000','7500','20000','60000','25000','2000','100000','70000','4000',
+'80000','3000','90000','125000','150000','200000','1000000','300000','500000',
+'250000','0','100000','10000','30000','50000','20000','40000','15000','1000',
+'25000','60000','125000','70000','80000','2000','150000','90000','5000','75000',
+'40000','3000','200000','300000','250000','1000000','500000','0','1000','10000',
+'5000','7500','4000','2000','50000','30000','40000','15000','3000','20000','25000',
+'60000','100000','70000','80000','90000','125000','150000','200000','1000000',
+'2500000','300000','500000','0','1000','5000','10000','2000','4000','7500',
+'30000','15000','50000','25000','100000','40000','70000']
+#----------
+df8 = pd.DataFrame(columns = ['Experience','Total Counts','Income','Sort'])
+df8['Experience'] = CodeXp[0:170]
+df8['Total Counts'] = CountXp[0:170]
+df8['Income'] = IncomeXp[0:170]
+df8['Sort'] = sort_df8
+
+df8['Sort'] = df8['Sort'].astype(float)
+sorted_df8 = df8.sort_values(by = 'Sort', ascending = False)
+sorted_df8.drop('Sort', axis = 1 , inplace = True)
+#----------
+from matplotlib.lines import Line2D
+x = sorted_df8['Total Counts']
+y = sorted_df8['Income']
+
+t = {'I have never written code':'#003f5c','< 1 years':'#374c80','1-3 years':'#7a5195',
+    '3-5 years':'#bc5090','5-10 years':'#ef5675','10-20 years':'#ff764a','20+ years':'#ffa600'}
+plt.rcParams["figure.figsize"] = (38,17)
+color = sorted_df8['Experience'].map(t)
+plt.scatter(x,y, s = 350, c = color, edgecolor = 'black')
+
+plt.ylabel("Income ($)")
+plt.xlabel("Total Counts")
+plt.xlim([0,300])
+
+handles = [Line2D([0], [0], marker='o', color='w', markerfacecolor=v, label=k, markersize=20) for k, v in t.items()]
+plt.legend(title='Experience', handles=handles, bbox_to_anchor=(1.05, 1), loc='upper left')
+plt.tight_layout()
+plt.show()
+#----------
+clusterIncome = df3['Level Of Income'].apply(lambda x:0 if x < 16 else 1)
+df3['High Income'] = clusterIncome
+df3['Education'] = df1['Education']
+
+crosstb = pd.crosstab(df3["Education"],df3["High Income"], normalize = True)
+crosstb.plot(kind = 'bar', stacked = 'true', grid = 'true')
+#-----------
+uniGraduate = df3['Education'].value_counts().head(3)
+
+def set_education_type(n):
+    if n in uniGraduate.index:
+        n = n
+    else:
+        n = 'HighSchool/College Graduate'
+    return n
+
+df3['University Graduates'] = df3['Education'].apply(lambda n:set_education_type(n))
+#-----------
+crosstb =pd.crosstab(df3["University Graduates"],df3['High Income'], normalize = True)
+crosstb.plot(kind = 'bar', stacked = 'true', grid = 'true')
+#-----------
+grouped_df3 = df3[['University Graduates','High Income']].groupby('High Income')
+df3_lowIncome = pd.DataFrame(grouped_df3.get_group(0), columns = ['University Graduates','High Income'])
+df3_HighIncome = pd.DataFrame(grouped_df3.get_group(1), columns = ['University Graduates','High Income'])
+#-----------
+from sklearn.cluster import KMeans
+
+X_low = pd.get_dummies(df3_lowIncome)
+x_high = pd.get_dummies(df3_HighIncome)
+
+km = KMeans(n_clusters = 4)
+
+y_low = km.fit_predict(X_low)
+y_high = km.fit_predict(x_high)
+
+df3_lowIncome['Cluster'] = y_low
+df3_HighIncome['Cluster'] = y_high
+#-----------
+churnLowIncome = pd.crosstab(df3_lowIncome['Cluster'], df3_lowIncome['University Graduates'], normalize = True)
+churnLowIncome.plot(kind = 'bar')
+#-----------
+churnHighIncome = pd.crosstab(df3_HighIncome['Cluster'], df3_HighIncome['University Graduates'], normalize = True)
+churnHighIncome.plot(kind = 'bar')
+#----------------------------
+df3['Experience'] = df1['Coding Experience']
+ctb = pd.crosstab(df3["Experience"],df3["High Income"], normalize = True)
+ctb.plot(kind = 'bar', stacked = 'true', grid = 'true')
+#-----------
+a = df3['Experience'].value_counts()
+highXp = a.iloc[3:6]
+
+def set_experience(n):
+    if n in highXp.index:
+        n = n
+    else:
+        n = 'Low Experience'
+    return n
+#-----------
+df3['High Experience'] = df3['Experience'].apply(lambda n:set_experience(n))
+ctb = pd.crosstab(df3["University Graduates"],df3['High Income'], normalize = True)
+ctb.plot(kind = 'bar', stacked = 'true', grid = 'true')
+#-----------
+grouped_Xp = df3[['High Experience','High Income']].groupby('High Income')
+df3_lowXp = pd.DataFrame(grouped_Xp.get_group(0), columns = ['High Experience','High Income'])
+df3_HighXp = pd.DataFrame(grouped_Xp.get_group(1), columns = ['High Experience','High Income'])
+#-----------
+from sklearn.cluster import KMeans
+
+X_low = pd.get_dummies(df3_lowXp)
+x_high = pd.get_dummies(df3_HighXp)
+
+km = KMeans(n_clusters = 4)
+
+y_low = km.fit_predict(X_low)
+y_high = km.fit_predict(x_high)
+
+df3_lowXp['Cluster'] = y_low
+df3_HighXp['Cluster'] = y_high
+#----------
+churnLowXp = pd.crosstab(df3_lowXp['Cluster'], df3_lowXp['High Experience'], normalize = True)
+churnLowXp.plot(kind = 'bar')
+#----------
+churnHighXp = pd.crosstab(df3_HighXp['Cluster'], df3_HighXp['High Experience'], normalize = True)
+churnHighXp.plot(kind = 'bar')
+#----------
+df_encoded = pd.DataFrame(columns = ['Age','Education','Experience','Level Of Income'])
+df_encoded['Age'] = df1['Age']
+df_encoded['Education'] = df1['Education']
+df_encoded['Experience'] = df1['Coding Experience']
+df_encoded['Level Of Income'] = cleanHighIncome
+#---------
+edu = ['I prefer not to answer','Some college/university study without earning a bachelor’s degree','No formal education past high school',
+       'Bachelor’s degree','Master’s degree','Doctoral degree','Professional doctorate']
+
+xp = ['I have never written code','< 1 years', '1-3 years',
+      '3-5 years','5-10 years','10-20 years','20+ years']
+#---------
+ordEncAge = OrdinalEncoder(categories = [ages])
+encodedAge = ordEncAge.fit_transform(df_encoded['Age'].values.reshape(-1,1))
+
+df_encodedAge= pd.DataFrame(columns = ['Age','Age Level'])
+df_encodedAge['Age'] = df1['Age']
+df_encodedAge['Age Level'] = encodedAge
+#----------
+df_encodedAge['High Income'] = df3['High Income']
+crosstab= pd.crosstab(df_encodedAge['Age'],df_encodedAge['High Income'], normalize = True)
+crosstab.plot(kind = 'bar', stacked = ' true', grid = 'true')
+youngDevelopers = df_encodedAge['Age'].value_counts().head(3)
+
+def set_age_group(n):
+    if n in youngDevelopers.index:
+        n = n
+    else:
+        n = 'Older Developers'
+    return n
+
+df_encodedAge['Young Developers'] = df_encodedAge['Age'].apply(lambda n:set_age_group(n))
+crosstab = pd.crosstab(df_encodedAge['Young Developers'], df_encodedAge['High Income'], normalize = True)
+crosstab.plot(kind = 'bar', stacked = 'true', grid = 'true')
+
+grouped_EA = df_encodedAge[['Young Developers','High Income']].groupby('High Income')
+EALow = pd.DataFrame(grouped_EA.get_group(0), columns = ['Young Developers','High Income'])
+EAHigh = pd.DataFrame(grouped_EA.get_group(1), columns = ['Young Developers','High Income'])
+
+from sklearn.cluster import KMeans
+
+X_low = pd.get_dummies(EALow)
+x_high = pd.get_dummies(EAHigh)
+
+km = KMeans(n_clusters = 3)
+
+y_low = km.fit_predict(X_low)
+y_high = km.fit_predict(x_high)
+
+EALow['Cluster'] = y_low
+EAHigh['Cluster'] = y_high
+
+churnEALow = pd.crosstab(EALow['Cluster'], EALow['Young Developers'], normalize = True)
+churnEALow.plot(kind = 'bar', figsize = (10,10), fontsize = 14)
+plt.legend(bbox_to_anchor = (1.0, 1.0))
+plt.title("Cluster Analysis: Low Income Devlopers(Age)")
+
+churnEAHigh = pd.crosstab(EAHigh['Cluster'], EAHigh['Young Developers'], normalize = True)
+churnEAHigh.plot(kind = 'bar',figsize = (10,10), fontsize = 14)
+plt.legend(bbox_to_anchor = (1.0, 1.0))
+plt.title("Cluster Analysis: High Income Devlopers(Age)")
+
+from sklearn import tree
+from sklearn.model_selection import train_test_split
+from sklearn import metrics
+
+X = df3['High Experience']
+y = df3['High Income']
+
+X = pd.get_dummies(X)
+X_train,X_test, y_train, y_test = train_test_split(X, y, test_size=0.4, random_state=1)
+DTC = tree.DecisionTreeClassifier(max_depth = 3, random_state = 0)
+DTC = DTC.fit(X_train, y_train)
+y_pred = DTC.predict(X_test)
+
+print("Classifer Accurary: {0:1f}".format(metrics.accuracy_score(y_test, y_pred)))
+fig=plt.figure()
+_ = tree.plot_tree(DTC, feature_names = X.columns, class_names = ["Low Income", "High Income"], filled = True)

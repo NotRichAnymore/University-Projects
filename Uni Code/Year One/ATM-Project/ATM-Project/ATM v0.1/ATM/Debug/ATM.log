@@ -1,0 +1,3 @@
+﻿  ATM.cpp
+ATM.obj : error LNK2019: unresolved external symbol "void __cdecl transaction(void)" (?transaction@@YAXXZ) referenced in function _main
+C:\Users\tyres\OneDrive - Nottingham Trent University\ATM\Debug\ATM.exe : fatal error LNK1120: 1 unresolved externals

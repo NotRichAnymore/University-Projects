@@ -1,0 +1,177 @@
+body {
+	/* Layout area */
+    margin: 0;
+    font-family: 'Noto Sans', sans-serif;
+	min-width:1000px;
+}
+
+.hero {
+    /* Sizing */
+    width: 100vw;
+    height: 100vh;
+    
+    /* Flexbox stuff */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* Text styles */
+    text-align: center;
+    color: white; 
+    
+    /* Background styles */
+    background-image: url('https://i.ytimg.com/vi/2v3YSRqWP0A/maxresdefault.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.hero h1 {
+    /* Text styles */
+    font-size: 5em;
+	font
+    
+    /* Margins */
+    margin-top: 0;
+    margin-bottom: 0.5em;
+}
+
+.hero .btn {
+    /* Positioning and sizing */
+    display: block;
+    width: 200px;
+    
+    /* Padding and margins */
+    padding: 1em;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    
+    /* Text styles */
+    color: white; /* CHANGE THIS LINE */
+    text-decoration: none;
+    font-size: 1.5em;
+    
+    /* Border styles */
+    border: 3px solid white; /* CHANGE THIS LINE */
+    border-radius: 20px;
+}
+
+.header {
+  overflow: hidden;
+  background-color: #173854;
+  padding: 10px 7.5px;
+}
+
+/* Style the header links */
+.header a {
+  float: left;
+  color: white;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 25px;
+  border-radius: 4px;
+}
+
+/* Style the logo link (notice that we set the same value of line-height and font-size to prevent the header to increase when the font gets bigger */
+.header a.logo {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+/* Change the background color on mouse-over */
+.header a:hover {
+  background-color: #5795c5;
+  color: black;
+}
+
+/* Style the active/current link*/
+.header a.active {
+  background-color: dodgerblue;
+  color: black;
+}
+
+/* Float the link section to the right */
+.header-right {
+  float: right;
+}
+
+/* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
+@media screen and (max-width: 500px) {
+  .header a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .header-right {
+    float: none;
+  }
+}
+
+/* Ensure proper sizing */
+* {
+  box-sizing: border-box;
+}
+
+/* Control properties of each text box */
+.bx_1{
+	background-color: white;
+	border-style:solid;
+	text-align: center;
+	float: left;
+	width:29vw;
+	height:350px;
+	padding:1vw;
+	margin:1vw;
+}
+
+
+.bx_2{
+	background-color: white;
+	border-style:solid;
+	text-align: center;
+	float: left;
+	width:34vw;
+	height:350px;
+	padding:1vw;
+	margin:1vw;
+}
+
+.bx_3{
+	background-color: white;
+	border-style:solid;
+	text-align: center;
+	float: right;
+	width:29vw;
+	height:350px;
+	padding:1vw;
+	margin:1vw;
+}
+
+/*Text settings for each paragraph */
+.p{
+	font-family: 'Noto Sans', sans-serif;
+	color: #fff;
+	padding-bottom: 1px;
+	
+}
+
+
+
+footer{
+	color:#173854;
+	text-align:center;
+	padding: 0px;
+	width:100%;
+	float: left;
+	background-color: gray;
+	bottom: 100%;
+}
+
+.action{
+	text-align:center;
+	float: center;
+}

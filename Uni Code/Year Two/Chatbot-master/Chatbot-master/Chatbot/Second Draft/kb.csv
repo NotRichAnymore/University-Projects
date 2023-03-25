@@ -1,0 +1,36 @@
+King (x)  -> Monarch (x)
+Queen (x) -> Monarch (x)
+
+King (k) -> -Queen(k)
+Queen (q) -> -King (q)
+
+King (JamesI)
+King (CharlesI)
+King (JamesII)
+King (CharlesII)
+King (WilliamIII)
+
+Queen(AnneI)
+Queen(AnneOfDenmark)
+Queen(HenritettaMaria)
+Queen(CatherineOfBraganza)
+Queen(MaryOfModena)
+Queen(AnneHyde)
+Queen(MaryII)
+
+
+"married (x, y) & Queen (y) -> King (x)"
+
+"married(JamesI, AnneOfDenmark)"
+"married(CharlesI, HenritettaMaria)"
+"married(CharlesII, CatherineOfBraganza)"
+"married(JamesII, MaryOfModena)"
+"married(JamesII, AnneHyde)"
+"married(WilliamIII, MaryII)"
+
+Kingdom (England)
+Kingdom (Scotland)
+Kingdom (Ireland)
+-Kingdom (Wales)
+
+
